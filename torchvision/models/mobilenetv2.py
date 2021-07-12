@@ -1,7 +1,7 @@
 import torch
 from torch import nn
 from torch import Tensor
-from .utils import load_state_dict_from_url
+from .._internally_replaced_utils import load_state_dict_from_url
 from typing import Callable, Any, Optional, List
 
 
@@ -46,7 +46,7 @@ class ConvBNActivation(nn.Sequential):
             norm_layer = nn.BatchNorm2d
         if activation_layer is None:
             activation_layer = nn.ReLU6
-        super(ConvBNReLU, self).__init__(
+        super().__init__(
             nn.Conv2d(in_planes, out_planes, kernel_size, stride, padding, dilation=dilation, groups=groups,
                       bias=False),
             norm_layer(out_planes),
